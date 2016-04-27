@@ -79,11 +79,15 @@ echo "daemon off;" >> /etc/nginx/nginx.conf
 # ------------------------------------------------------------------------------
 
 # install MariaDB client and server
-#apt-get -y install mysql-client
-#apt-get -y install mysql-server pwgen
+apt-get -y install mysql-client
+apt-get -y install mariadb-server pwgen
 
 # copy MariaDB configuration
-#cp /provision/conf/my.cnf /etc/mysql/my.cnf
+cp /provision/conf/my.cnf /etc/mysql/my.cnf
+
+# MariaDB seems to have problems starting if these permissions are not set:
+mkdir /var/run/mysqld
+chmod 777 /var/run/mysqld
 
 # ------------------------------------------------------------------------------
 # Node and npm
