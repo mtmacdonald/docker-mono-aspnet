@@ -64,6 +64,7 @@ apt-get -y install nginx
 
 # copy a development-only default site configuration
 cp /provision/conf/nginx-development /etc/nginx/sites-available/default
+cp /provision/conf/fastcgi_params /etc/nginx/fastcgi_params
 
 # disable 'daemonize' in nginx (because we use supervisor instead)
 echo "daemon off;" >> /etc/nginx/nginx.conf
@@ -72,14 +73,16 @@ echo "daemon off;" >> /etc/nginx/nginx.conf
 # Mono and ASP.NET
 # ------------------------------------------------------------------------------
 
-
+apt-get -y install mono-complete
+apt-get -y install mono-xps4
+apt-get -y install install mono-fastcgi-server4
 
 # ------------------------------------------------------------------------------
 # MariaDB server
 # ------------------------------------------------------------------------------
 
 # install MariaDB client and server
-apt-get -y install mysql-client
+apt-get -y install mariadb-client
 apt-get -y install mariadb-server pwgen
 
 # copy MariaDB configuration
