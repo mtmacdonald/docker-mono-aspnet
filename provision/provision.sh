@@ -9,7 +9,7 @@ apt-get update
 # curl
 # ------------------------------------------------------------------------------
 
-apt-get -y install curl libcurl3 libcurl3-dev php5-curl
+apt-get -y install curl libcurl3 libcurl3-dev
 
 # ------------------------------------------------------------------------------
 # Supervisor
