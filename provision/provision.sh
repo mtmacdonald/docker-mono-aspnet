@@ -6,6 +6,12 @@
 apt-get update
 
 # ------------------------------------------------------------------------------
+# unzip
+# ------------------------------------------------------------------------------
+
+apt-get -y install unzip
+
+# ------------------------------------------------------------------------------
 # curl
 # ------------------------------------------------------------------------------
 
@@ -75,7 +81,7 @@ echo "daemon off;" >> /etc/nginx/nginx.conf
 
 apt-get -y install mono-complete
 apt-get -y install mono-xps4
-apt-get -y install install mono-fastcgi-server4
+apt-get -y install mono-fastcgi-server4
 
 # ------------------------------------------------------------------------------
 # MariaDB server
@@ -91,6 +97,22 @@ cp /provision/conf/my.cnf /etc/mysql/my.cnf
 # MariaDB seems to have problems starting if these permissions are not set:
 mkdir /var/run/mysqld
 chmod 777 /var/run/mysqld
+
+# ------------------------------------------------------------------------------
+# MySQL Connector∕Net
+#
+# http://www.mono-project.com/docs/database-access/providers/mysql
+# http://dev.mysql.com/doc/connector-net/en/connector-net-installation-unix.html
+# https://www.linode.com/docs/websites/frameworks/build-aspnetmono-applications-with-modmono-and-apache-on-debian-5-lenny
+# ------------------------------------------------------------------------------
+
+cd /opt/
+#wget http://dev.mysql.com/get/Downloads/Connector-Net/mysql-connector-net-6.9.8-noinstall.zip
+curl -sL -o ./mysql-connector.zip http://dev.mysql.com/get/Downloads/Connector-Net/mysql-connector-net-6.9.8-noinstall.zip
+unzip -d mysqlConnector mysql-connector.zip
+cd mysqlConnector/v4.5/
+gacutil /i MySql.Data.dll
+gacutil /i MySql.Web.dll 
 
 # ------------------------------------------------------------------------------
 # Node and npm
